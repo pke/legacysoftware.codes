@@ -122,7 +122,7 @@ const codeToDesc = module.exports.parts.reduce((result, part) => {
 
 
 // /!?(?:O|S|I|C|E|M|V|PS|D)(?:(?:\+|-){1,3})?/gm
-const regex = new RegExp(`!?(?:${Object.keys(keyToPart).join("|")})(?:(?:\\+|-){1,3})?`, "gm")
+const regex = new RegExp(`!?(?:${Object.keys(keyToPart).join("|")})(?:\\+{1,3}|-{1,3}|!{1})?`, "gm")
 
 module.exports.descriptor = function description(codePart) {
   codePart = codePart.toUpperCase()
@@ -130,6 +130,8 @@ module.exports.descriptor = function description(codePart) {
   let m
   while ((m = regex.exec(codePart)) !== null) {
     m.forEach((match) => {
+      console.log("match", match)
+      debugger
       const code = codeToDesc[match]
       result.push({
         code: match,
