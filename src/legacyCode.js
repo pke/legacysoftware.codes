@@ -130,8 +130,6 @@ module.exports.descriptor = function description(codePart) {
   let m
   while ((m = regex.exec(codePart)) !== null) {
     m.forEach((match) => {
-      console.log("match", match)
-      debugger
       const code = codeToDesc[match]
       result.push({
         code: match,
