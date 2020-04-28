@@ -31,7 +31,9 @@ const Part = ({ title, name, items, selected }) => (
 )
 
 const Code = ({ parts, describe }) => (
-  parts.map(part => <span key={part} title={describe(part)}>{part}</span>)
+  parts.length
+    ? parts.map(part => <span key={part} title={describe(part)}>{part}</span>)
+    : <span>Please select options below to create a code.</span>
 )
 
 export default function Index({ checked }) {
