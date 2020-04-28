@@ -4,6 +4,8 @@ lscodes: O++S++IC+EMV+PS++D-
 
 # Legacy Software Codes Generator & Decoder
 
+<img src="https://img.shields.io/badge/dynamic/json?color=blue&label=lscodes&query=$.lscodes&url=https%3A%2F%2Fraw.githubusercontent.com%2Fpke%2Flegacysoftware.codes%2Fmaster%2Fpackage.json">
+
 Based on the idea of fefe [published at 36c3](https://media.ccc.de/v/36c3-10608-das_nutzlich-unbedenklich_spektrum).
 
 ## Generator
