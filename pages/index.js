@@ -2,7 +2,10 @@ import React, { useState, useRef, useCallback } from "react"
 import Head from 'next/head'
 
 import { repository, lscodes } from "../package.json"
+
 import { parts, description } from "../src/legacyCode"
+
+const describe = parts => description(parts, "\n")
 
 const Input = ({ name, value, label, selected }) => {
   const [ checked, setChecked ] = useState(selected)
@@ -34,7 +37,10 @@ const Part = ({ title, name, items, selected }) => (
 
 const Code = ({ parts, describe }) => (
   parts.length
-    ? parts.map(part => <span key={part} title={describe(part)}>{part}</span>)
+    ? <>
+        <span title={describe(parts.join(""))}>Code: </span>
+        { parts.map(part => <span key={part} title={describe(part)}>{part}</span>) }
+      </>
     : <span>Please select options below to create a code.</span>
 )
 
