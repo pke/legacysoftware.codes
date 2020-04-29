@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": "pke/legacysoftware.codes",
+  "lscodes": "O++S++IC+EMV+PS++D-",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next",
     "test": "mochista"
