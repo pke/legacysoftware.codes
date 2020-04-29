@@ -1,5 +1,7 @@
 import React, { useState, useRef, useCallback } from "react"
+import Head from 'next/head'
 
+import { repository, lscodes } from "../package.json"
 import { parts, description } from "../src/legacyCode"
 
 const Input = ({ name, value, label, selected }) => {
@@ -52,7 +54,12 @@ export default function Index({ checked }) {
 
   return (
     <>
-      <div className="result"><Code parts={code} describe={description}/></div>
+      <Head>
+        <title>Legacy Software Codes</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+        <link rel="version-history" content="https://github.com/pke/legacysoftware.codes"/>
+      </Head>
+      <div className="result"><Code parts={code} describe={describe}/></div>
       <form onChange={onChange} action="/" method="GET">
         <noscript>
           <input type="submit" value="Get Codes"/>
@@ -61,6 +68,11 @@ export default function Index({ checked }) {
             <Part key={name} title={title} name={name} items={items} selected={checked[name]}/>)
         }
       </form>
+      <span>This project: </span>
+      <a href={"https://github.com/" + repository}>GitHub</a>&nbsp;
+      <img 
+        title={describe(lscodes)}
+        src={`https://img.shields.io/badge/dynamic/json?color=blue&label=lscodes&query=$.lscodes&url=${encodeURIComponent("https://raw.githubusercontent.com/" + repository + "/master/package.json")}`}/>
     </>
   )
 }
