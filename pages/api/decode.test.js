@@ -1,12 +1,24 @@
 const http = require("http")
 const request = require("supertest")
 
-const { apiResolver } = require("next/dist/next-server/server/api-utils")
+const { apiResolver } = require("next/dist/server/api-utils/node/api-resolver")
 
 const handler = require("./decode")
 
 describe("Description API endpoint tests", function() {
-  const server = request(http.createServer((req, res) => apiResolver(req, res, undefined, handler)))
+  const apiContext = {
+    previewModeId: "test",
+    previewModeEncryptionKey: "test",
+    previewModeSigningKey: "test",
+  }
+  const server = request(http.createServer((req, res) => apiResolver(
+    req,
+    res,
+    Object.fromEntries(new URL(req.url, "http://localhost").searchParams),
+    handler,
+    apiContext,
+    true
+  )))
 
   describe("Failures", function() {
     it("should return 405 for anything but GET method", async function() {
