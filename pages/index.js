@@ -1,11 +1,12 @@
 import React, { useState, useRef, useCallback } from "react"
 import Head from 'next/head'
 
-import { repository, lscodes } from "../package.json"
+import packageMetadata from "../package.json"
 
 import { parts, description } from "../src/legacyCode"
 
 const describe = parts => description(parts, "\n")
+const { repository, lscodes } = packageMetadata
 
 const Input = ({ name, value, label, selected }) => {
   const [ checked, setChecked ] = useState(selected)
